@@ -35,7 +35,7 @@ def change_player(sign):
 def do_input(sign):
     while break_flag:
         sign = change_player(sign)
-        value = input('Куда поставить: ' + sign)
+        value = input('Куда поставить ' + sign +' ?')
         if not value.isdigit() or int(value) not in list(range(1, 10)):
             print('Неправильный ввод! Вводить можно только цифры от 1 до 9')
             continue
