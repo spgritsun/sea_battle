@@ -151,16 +151,16 @@ real_board = Board.create_real_board()
 # Board.boom(22)
 # Board.draw_board()
 # print(Ship.ship_create().__dict__)
-Ship.ship_create(3)
+# Ship.ship_create(3)
+print('Ship.ship_create(3) =',Ship.ship_create(3))
 Ship.ship_create(2)
-# real_board_selected = Board.create_real_board_selected()
 Ship.ship_create(2)
-real_board_selected = Board.create_real_board_selected()
 Ship.ship_create(1)
-# real_board_selected = Board.create_real_board_selected()
 Ship.ship_create(1)
-# real_board_selected = Board.create_real_board_selected()
 Ship.ship_create(1)
-# real_board_selected = Board.create_real_board_selected()
 Ship.ship_create(1)
+
+
+
+
 Board.draw_board()
