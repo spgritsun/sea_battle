@@ -46,7 +46,7 @@ class Board:
     #     # return board
 
     @classmethod
-    def draw_board(cls,board):
+    def draw_board(cls, board):
         for i in range(1, 7):
             if i == 1:
                 print('     ', i, ' ', end=' ')
@@ -64,7 +64,7 @@ class Board:
             print(g, '   ', st)
 
     @classmethod
-    def create_real_board(cls,board):
+    def create_real_board(cls, board):
         real_board = []
         for i in range(1, 7):
             for g in range(1, 7):
@@ -141,18 +141,18 @@ class Ship:
             # print('cnt =', cnt)
 
         else:
-            cls.ship_create(d,board)
+            cls.ship_create(d, board)
 
     @classmethod
-    def create_ships(cls, ships_d,board):
+    def create_ships(cls, ships_d, board):
 
         for i in ships_d:
-            cls.ship_create(i,board)
+            cls.ship_create(i, board)
 
     @classmethod
-    def place_ships(cls, belonging,board):
+    def place_ships(cls, belonging, board):
         global cnt, real_board
-        Ship.create_ships(ships,board)
+        Ship.create_ships(ships, board)
         while cnt != 7:
             # print('Пробуем ещё раз')
             cnt = 0
@@ -162,68 +162,79 @@ class Ship:
 
         if cnt == 7 and belonging:
             print('')
-            print('Мои корабли')
+            print('Мои корабли расставлены')
             print('')
         elif cnt == 7 and not belonging:
             print('')
-            print('Корабли противника')
+            print('Корабли противника расставлены')
             print('')
 
 
 my_board = Board.create_board()
 real_board = Board.create_real_board(my_board)
-# real_board_selected = Board.create_real_board_selected()
-# print(board[1].z)
-# Board.boom(7)
-# Board.ship(2)
-# Board.ship(3)
-# Board.boboom(4)
-# Board.ship(5)
-# Board.boom(12)
-# Board.boom(22)
-# Board.draw_board()
-# print(Ship.ship_create().__dict__)
-# Ship.ship_create(3)
-# Ship.ship_create(3)
-# Ship.ship_create(2)
-# Ship.ship_create(2)
-# Ship.ship_create(1)
-# Ship.ship_create(1)
-# Ship.ship_create(1)
-# Ship.ship_create(1)
-Ship.place_ships(1,my_board)
+    # real_board_selected = Board.create_real_board_selected()
+    # print(board[1].z)
+    # Board.boom(7)
+    # Board.ship(2)
+    # Board.ship(3)
+    # Board.boboom(4)
+    # Board.ship(5)
+    # Board.boom(12)
+    # Board.boom(22)
+    # Board.draw_board()
+    # print(Ship.ship_create().__dict__)
+    # Ship.ship_create(3)
+    # Ship.ship_create(3)
+    # Ship.ship_create(2)
+    # Ship.ship_create(2)
+    # Ship.ship_create(1)
+    # Ship.ship_create(1)
+    # Ship.ship_create(1)
+    # Ship.ship_create(1)
+Ship.place_ships(1, my_board)
 
-# Ship.create_ships(ships)
-#
-# while cnt != 7:
-#     print('Пробуем ещё раз')
-#     cnt = 0
-#     board = Board.create_board()
-#     real_board = Board.create_real_board()
-#     Ship.create_ships(ships)
-#
-# if cnt == 7:
-#     print('Всё получилось. Корабли расставлены!')
-# my_board = board
+    # Ship.create_ships(ships)
+    #
+    # while cnt != 7:
+    #     print('Пробуем ещё раз')
+    #     cnt = 0
+    #     board = Board.create_board()
+    #     real_board = Board.create_real_board()
+    #     Ship.create_ships(ships)
+    #
+    # if cnt == 7:
+    #     print('Всё получилось. Корабли расставлены!')
+    # my_board = board
 Board.draw_board(my_board)
 
-# print('')
-# print('Корабли противника')
-# print('')
+    # print('')
+    # print('Корабли противника')
+    # print('')
 enemy_board = Board.create_board()
 real_board = Board.create_real_board(enemy_board)
 Ship.place_ships(0, enemy_board)
 Board.draw_board(enemy_board)
-#
-# coordinates = tuple(
-#     map(int, input('Введите номер строки и номер столбца через пробел, для того, чтобы сделать ход ').split()))
-# x, y = coordinates
-# enemy_board = Board.boboom(Board.find_n(x, y).n) if board[Board.find_n(x, y).n].z == u"\u25A0" else Board.boom(
-#     Board.find_n(x, y).n)
-# Board.draw_board()
-#
-# enemy_shot = random.choice(real_board).n
-#
-# my_board = Board.boboom(enemy_shot) if board[enemy_shot].z == u"\u25A0" else Board.boom(
-#     enemy_shot)
-# Board.draw_board()
+
+while True:
+    print('')
+    coordinates = tuple(
+        map(int, input('Введите номер строки и номер столбца через пробел, для того, чтобы сделать ход ').split()))
+    x, y = coordinates
+    enemy_board = Board.boboom(Board.find_n(x, y, enemy_board).n, enemy_board) if enemy_board[Board.find_n(x, y,enemy_board).n].z == u"\u25A0" else Board.boom(
+        Board.find_n(x, y, enemy_board).n, enemy_board)
+
+
+    enemy_shot = random.choice(real_board).n
+    # print(real_board)
+    # print(len(real_board), enemy_shot)
+
+    my_board = Board.boboom(enemy_shot, my_board) if my_board[enemy_shot].z == u"\u25A0" else Board.boom(enemy_shot, my_board)
+
+    print('')
+    print('Мои корабли')
+    print('')
+    Board.draw_board(my_board)
+    print('')
+    print('Корабли противника')
+    print('')
+    Board.draw_board(enemy_board)
