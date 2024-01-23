@@ -226,5 +226,6 @@ while win_flag:
         win_flag = 0
     else:
         print('\n', 'Отлично! Компьютер тоже сделал ход. Продолжим игру!)')
+
     my_win_list = []
     enemy_win_list = []
